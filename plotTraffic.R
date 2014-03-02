@@ -21,7 +21,7 @@ tit.text = paste('M50: count site=',site$name[1])
 
 ggplot(data=site, aes(x=hour,y=light, colour=direction)) + geom_smooth(method=loess,span=0.2,size=2)  + theme_bw() +ggtitle(tit.text) + format 
 
-ggplot(data=site, aes(x=hour,y=light, colour=month)) + geom_smooth(method=loess,span=0.2, size=2)  + theme_bw() + ylab('Count of light vehicles per hour')+ xlab('Hour of Day') +ggtitle(tit.text) + format 
+#ggplot(data=site, aes(x=hour,y=light, colour=month)) + geom_smooth(method=loess,span=0.2, size=2)  + theme_bw() + ylab('Count of light vehicles per hour')+ xlab('Hour of Day') +ggtitle(tit.text) + format 
 
 ggplot(data=site, aes(x=hour,y=light, colour=day)) + geom_smooth(method=loess,span=0.2, size=2)  + theme_bw() + ylab('Count of light vehicles per hour')+ xlab('Hour of Day') +ggtitle(tit.text) + format 
 ggplot(data=site, aes(x=hour,y=hgv, colour=day)) + geom_smooth(method=loess,span=0.2, size=2)  + theme_bw()+ ylab('Count of HGV per hour') + xlab('Hour of Day') + format +ggtitle(tit.text)
