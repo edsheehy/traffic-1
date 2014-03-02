@@ -36,3 +36,41 @@ tmp2$d.light = tmp2[,3]/tmp2[,5]
 tmp2$d.hgv = tmp2[,4]/tmp2[,6]
 ggplot(data=tmp2, aes(x=hour,y=d.light, colour=direction)) + geom_smooth(method=loess,size=2)  + theme_bw()  + format 
 #ggplot(data=tmp2, aes(x=hour,y=d.hgv, colour=direction)) + geom_smooth(method=loess,size=2)  + theme_bw()  + format 
+
+# Look at mid week
+site = subset(M50, (day=='Tues'|day=='Wed'|day=='Thurs') & site=='21')
+site$hour = as.numeric(format(site$date,'%H'))
+site$month = as.character(format(site$date,'%b'))
+site$year = factor(as.numeric(format(site$date,'%Y')))
+tit.text = paste('Midweek M50: site=',as.character(site$site[1]),site$name[1])
+ggplot(data=site, aes(x=hour,y=light, colour=year)) + geom_smooth(method=loess, span=0.2,size=2) + ylab('Count of light vehicles per hour')+ xlab('Hour of Day') +ggtitle(tit.text) + format 
+ggplot(data=site, aes(x=hour,y=hgv, colour=year)) + geom_smooth(method=loess, span=0.2, size=2)  + ylab('Count of HGV per hour') + xlab('Hour of Day') + format +ggtitle(tit.text)
+
+# Look at weekend
+site = subset(M50, (day=='Sat'|day=='Sun') & site=='21')
+site$hour = as.numeric(format(site$date,'%H'))
+site$month = as.character(format(site$date,'%b'))
+site$year = factor(as.numeric(format(site$date,'%Y')))
+tit.text = paste('Weekend M50: site=',as.character(site$site[1]),site$name[1])
+ggplot(data=site, aes(x=hour,y=light, colour=year)) + geom_smooth(method=loess, span=0.2,size=2) + ylab('Count of light vehicles per hour')+ xlab('Hour of Day') +ggtitle(tit.text) + format 
+ggplot(data=site, aes(x=hour,y=hgv, colour=year)) + geom_smooth(method=loess, span=0.2, size=2)  + ylab('Count of HGV per hour') + xlab('Hour of Day') + format +ggtitle(tit.text)
+
+# Look at Friday
+site = subset(M50, (day=='Fri') & site=='21')
+site$hour = as.numeric(format(site$date,'%H'))
+site$month = as.character(format(site$date,'%b'))
+site$year = factor(as.numeric(format(site$date,'%Y')))
+tit.text = paste('Friday M50: site=',as.character(site$site[1]),site$name[1])
+ggplot(data=site, aes(x=hour,y=light, colour=year)) + geom_smooth(method=loess, span=0.2,size=2) + ylab('Count of light vehicles per hour')+ xlab('Hour of Day') +ggtitle(tit.text) + format 
+ggplot(data=site, aes(x=hour,y=hgv, colour=year)) + geom_smooth(method=loess, span=0.2, size=2)  + ylab('Count of HGV per hour') + xlab('Hour of Day') + format +ggtitle(tit.text)
+
+
+# Look at all sites
+site = subset(M50, (day=='Wed'))
+site$hour = as.numeric(format(site$date,'%H'))
+site$month = as.character(format(site$date,'%b'))
+site$year = factor(as.numeric(format(site$date,'%Y')))
+tit.text = paste('Wednesday M50: average over all sites')
+ggplot(data=site, aes(x=hour,y=light, colour=year)) + geom_smooth(method=loess, span=0.2,size=2) + ylab('Count of light vehicles per hour')+ xlab('Hour of Day')  + format +ggtitle(tit.text)
+ggplot(data=site, aes(x=hour,y=hgv, colour=year)) + geom_smooth(method=loess, span=0.2, size=2)  + ylab('Count of HGV per hour') + xlab('Hour of Day') + format +ggtitle(tit.text)
+
